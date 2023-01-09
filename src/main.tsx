@@ -1,23 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import App from './App'
 import './index.css'
-import BookingFormLayout, { BookingFormLayoutProps } from './layout/BookingFormLayout'
+import { BookingFormProps } from './store/bookingFormStore'
 
 const bookingformRoots = document.querySelectorAll('.bookingform')
 
 bookingformRoots.forEach((root) => {
   const dataset = (root as HTMLElement).dataset
-  const formProps: BookingFormLayoutProps = {}
+  const formProps: Partial<BookingFormProps> = { context: {} }
   if (dataset && dataset.services) {
-    formProps.services = dataset.services.split(',').map((s) => parseInt(s))
+    formProps.context!.services = dataset.services.split(',').map((s) => parseInt(s))
   }
   if (dataset && dataset.agents) {
-    formProps.agents = dataset.agents.split(',').map((s) => parseInt(s))
+    formProps.context!.agents = dataset.agents.split(',').map((s) => parseInt(s))
   }
 
   ReactDOM.createRoot(root as HTMLElement).render(
     <React.StrictMode>
-      <BookingFormLayout {...formProps} />
+      <App {...formProps} />
     </React.StrictMode>,
   )
 })

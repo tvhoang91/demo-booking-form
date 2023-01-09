@@ -18,8 +18,5 @@
 .bookingform {
   max-width: 1200px;
   max-height: 800px;
-  margin: 32px;
-
-  max-width: 1200px;
-  max-height: 800px;
+  margin: 32px auto;
 }

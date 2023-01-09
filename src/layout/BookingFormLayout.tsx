@@ -1,24 +1,23 @@
+import useBookingFormContext from "@src/store/context/useBookingFormContext"
 import "./BookingFormLayout.scss"
 
-export interface BookingFormLayoutProps {
-  services?: number[],
-  agents?: number[]
-}
+function BookingFormLayout() {
 
-function BookingFormLayout({ services, agents }: BookingFormLayoutProps) {
+  const context = useBookingFormContext(s => s.context)
 
   return (
     <div className="booking-form-layout">
       <h3>Booking Form</h3>
+
       <p>
-        {services
-          ? `Services: ${JSON.stringify(services)}`
+        {context.services
+          ? `Services: ${JSON.stringify(context.services)}`
           : "All services"}
       </p>
 
       <p>
-        {agents
-          ? `Agents: ${JSON.stringify(agents)}`
+        {context.agents
+          ? `Agents: ${JSON.stringify(context.agents)}`
           : "All agents"}
       </p>
     </div>
