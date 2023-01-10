@@ -1,47 +1,26 @@
 import { createStore } from 'zustand'
+import { immer } from "zustand/middleware/immer"
 
-export interface BookingFormProps {
-  context: {
-    services?: number[],
-    agents?: number[]
-  }
+import { ContextProps, ContextSlice, createContextSlice } from './slices/contextSlice'
+import { SelectSlice, createSelectSlice } from './slices/selectSlice'
 
-  selected: {
-    service: number | null,
-    agent: number | null
-  }
+export interface BookingFormProps extends ContextProps {
 }
 
-const DEFAULT_PROPS: BookingFormProps = {
-  context: {},
-
-  selected: {
-    service: null,
-    agent: null
-  }
-}
-
-export interface BookingFormState extends BookingFormProps {
-  selectService: (service: number) => void
-  unselectService: () => void
-
-  selectAgent: (agent: number) => void
-  unselectAgent: () => void
-}
+export type BookingFormState = ContextSlice & SelectSlice
 
 export type BookingFormStore = ReturnType<typeof createBookingFormStore>
 
 const createBookingFormStore = (initProps?: Partial<BookingFormProps>) => {
-  return createStore<BookingFormState>()((set) => ({
-    ...DEFAULT_PROPS,
-    ...initProps,
-
-    selectService: (service) => { },
-    unselectService: () => { },
-
-    selectAgent: (agent) => { },
-    unselectAgent: () => { }
-  }))
+  return createStore<BookingFormState>()(
+    immer(
+      (...params) => ({
+        ...createContextSlice(...params),
+        ...createSelectSlice(...params),
+        ...initProps
+      }),
+    )
+  )
 }
 
 export default createBookingFormStore
