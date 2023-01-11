@@ -1,6 +1,7 @@
 import { BookingFormState } from "../bookingFormStore"
 import { StateCreator } from "zustand"
-import { StepId, STEP_ID_ORDERED } from "@src/data/steps/step.model"
+import { StepId } from "@src/data/steps/step.model"
+import { STEP_ID_ORDERED } from "@src/data/steps/step.config"
 
 export interface StepsData {
   steps: {

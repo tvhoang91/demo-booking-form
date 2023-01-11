@@ -4,7 +4,6 @@ export type StepModel = {
 }
 
 export type StepId = "service" | "agent" | "datetime" | "confirm" | "contact" | "checkout" | "done"
-export const STEP_ID_ORDERED: StepId[] = ["service", "agent", "datetime", "confirm", "contact", "checkout", "done"]
 
 export const SERVICE_STEP: StepModel = {
   id: "service",
