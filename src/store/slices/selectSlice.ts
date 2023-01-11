@@ -35,6 +35,8 @@ export interface SelectSlice extends SelectData {
   enterContact: (name: string, email: string) => void
 
   selectPaymentMethod: (paymentMethod: "stripe" | "later", cardId: string) => void
+
+  resetForm: () => void
 }
 
 export const createSelectSlice: StateCreator<BookingFormState, [["zustand/immer", never]], [], SelectSlice> = (set) => ({
@@ -52,6 +54,11 @@ export const createSelectSlice: StateCreator<BookingFormState, [["zustand/immer"
   enterContact: (name, email) => set(state => state.selected.contact = { name, email }),
 
   selectPaymentMethod: (paymentMethod, cardId) => set(state => state.selected.checkout = { paymentMethod, cardId }),
+
+  resetForm: () => set(state => {
+    state.steps.current = 0
+    state.selected = DEFAULT_DATA.selected
+  }),
 })
 
 const DEFAULT_DATA: SelectData = {

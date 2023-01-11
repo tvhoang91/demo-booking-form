@@ -1,25 +1,18 @@
 import useBookingFormContext from "@src/store/context/useBookingFormContext"
+import BookingFormContent from "./BookingFormContent"
+import BookingFormFooter from "./BookingFormFooter"
+import BookingFormHeader from "./BookingFormHeader"
 import "./BookingFormLayout.scss"
 
 function BookingFormLayout() {
 
-  const context = useBookingFormContext(s => s.context)
-
   return (
-    <div className="booking-form-layout">
-      <h3>Booking Form</h3>
+    <div className="bf-layout">
+      <BookingFormHeader />
 
-      <p>
-        {context.services
-          ? `Services: ${JSON.stringify(context.services)}`
-          : "All services"}
-      </p>
+      <BookingFormContent />
 
-      <p>
-        {context.agents
-          ? `Agents: ${JSON.stringify(context.agents)}`
-          : "All agents"}
-      </p>
+      <BookingFormFooter />
     </div>
   )
 }
