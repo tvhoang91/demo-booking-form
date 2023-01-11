@@ -42,18 +42,18 @@ export interface SelectSlice extends SelectData {
 export const createSelectSlice: StateCreator<BookingFormState, [["zustand/immer", never]], [], SelectSlice> = (set) => ({
   ...DEFAULT_DATA,
 
-  selectService: (service) => set(state => state.selected.service = service),
-  unselectService: () => set(state => state.selected.service = null),
+  selectService: (service) => set(state => { state.selected.service = service }),
+  unselectService: () => set(state => { state.selected.service = null }),
 
-  selectAgent: (agent) => set(state => state.selected.agent = agent),
-  unselectAgent: () => set(state => state.selected.agent = null),
+  selectAgent: (agent) => set(state => { state.selected.agent = agent }),
+  unselectAgent: () => set(state => { state.selected.agent = null }),
 
-  selectDatetime: (datetime) => set(state => state.selected.datetime = datetime),
-  unselectDatetime: () => set(state => state.selected.datetime = null),
+  selectDatetime: (datetime) => set(state => { state.selected.datetime = datetime }),
+  unselectDatetime: () => set(state => { state.selected.datetime = null }),
 
-  enterContact: (name, email) => set(state => state.selected.contact = { name, email }),
+  enterContact: (name, email) => set(state => { state.selected.contact = { name, email } }),
 
-  selectPaymentMethod: (paymentMethod, cardId) => set(state => state.selected.checkout = { paymentMethod, cardId }),
+  selectPaymentMethod: (paymentMethod, cardId) => set(state => { state.selected.checkout = { paymentMethod, cardId } }),
 
   resetForm: () => set(state => {
     state.steps.current = 0

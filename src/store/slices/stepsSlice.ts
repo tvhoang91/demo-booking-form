@@ -17,8 +17,8 @@ export interface StepsSlice extends StepsData {
 export const createStepsSlice: StateCreator<BookingFormState, [["zustand/immer", never]], [], StepsSlice> = (set) => ({
   ...DEFAULT_DATA,
 
-  navNext: () => set(state => state.steps.current++),
-  navPrev: () => set(state => state.steps.current--),
+  navNext: () => set(state => { state.steps.current++ }),
+  navPrev: () => set(state => { state.steps.current-- }),
 })
 
 const DEFAULT_DATA: StepsData = {
