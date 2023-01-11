@@ -9,7 +9,7 @@ function useBookingFormSteps() {
   const { navNext, navPrev, unselectService, unselectAgent, unselectDatetime,
   } = useBookingFormContext(s => s, () => true)
 
-  const canNavPrev = stepsState.current > 0
+  const canNavPrev = stepsState.current > 0 && stepsState.current <= stepsState.stepsOrdered.indexOf("checkout")
   const navPrevHandler = useCallback(() => {
     if (!canNavPrev) return
 
