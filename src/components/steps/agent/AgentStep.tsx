@@ -6,8 +6,16 @@ function AgentStep() {
 
   const { selectAgent, navNext } = useBookingFormContext(s => s, () => true)
 
+  const context = useBookingFormContext(s => s.context)
   const selected = useBookingFormContext(s => s.selected)
+
   const agentList = AGENT_DATA.filter((agent) => {
+    if (context.agents) {
+      if (!context.agents.includes(agent.id)) {
+        return false
+      }
+    }
+
     if (selected.service) {
       if (selected.service.excludeAgents.includes(agent.id)) {
         return false

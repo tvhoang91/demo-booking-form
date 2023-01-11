@@ -7,8 +7,16 @@ function ServiceStep() {
 
   const { selectService, navNext } = useBookingFormContext(s => s, () => true)
 
+  const context = useBookingFormContext(s => s.context)
   const selected = useBookingFormContext(s => s.selected)
+
   const serviceList = SERVICE_DATA.filter((service) => {
+    if (context.services) {
+      if (!context.services.includes(service.id)) {
+        return false
+      }
+    }
+
     if (selected.agent) {
       if (service.excludeAgents.includes(selected.agent.id)) {
         return false
